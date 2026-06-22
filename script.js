@@ -1,12 +1,19 @@
 alert("SCRIPT LOADED");
 
-const form = document.getElementById("bookingForm");
+window.onload = function () {
 
-console.log(form);
+    const form = document.getElementById("bookingForm");
 
-if(form){
-    form.addEventListener("submit", function(e){
+    if (!form) {
+        alert("FORM NOT FOUND");
+        return;
+    }
+
+    alert("FORM FOUND");
+
+    form.addEventListener("submit", function(e) {
         e.preventDefault();
-        alert("FORM WORKS");
+        alert("FORM SUBMITTED");
     });
-}
+
+};
