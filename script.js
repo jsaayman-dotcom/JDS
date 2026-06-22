@@ -7,7 +7,7 @@ window.onload = function () {
     const form = document.getElementById("bookingForm");
 
     if (!form) {
-        alert("FORM NOT FOUND");
+        console.error("Booking form not found.");
         return;
     }
 
@@ -41,7 +41,7 @@ window.onload = function () {
 
             console.error("EmailJS Error:", error);
 
-            alert("Booking failed. Press F12 and check Console.");
+            alert("Booking failed. Check the browser console (F12).");
 
         });
 
