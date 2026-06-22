@@ -1,27 +1,45 @@
-// Smooth scrolling for navigation links
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
+emailjs.init({
+    publicKey: "vJkRPa-otxE7RW78s"
 });
 
-// Booking form confirmation
+const form = document.getElementById("bookingForm");
 
-const form = document.querySelector('form');
+form.addEventListener("submit", function (e) {
 
-if (form) {
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
+    e.preventDefault();
+
+    const templateParams = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        idnumber: document.getElementById("idnumber").value,
+        service: document.getElementById("service").value,
+        date: document.getElementById("date").value,
+        notes: document.getElementById("notes").value
+    };
+
+    emailjs.send(
+        "service_pyadlgy",
+        "template_vmkkrjg",
+        templateParams
+    )
+    .then(function () {
 
         alert(
-            'Thank you. Your booking request has been received. A JDS representative will contact you shortly to confirm your appointment.'
+            "Thank you. Your booking request has been received. We will contact you shortly to confirm your appointment."
         );
 
         form.reset();
+
+    })
+    .catch(function (error) {
+
+        console.error(error);
+
+        alert(
+            "There was a problem sending your booking request. Please try again."
+        );
+
     });
-}
+
+});
